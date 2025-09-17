@@ -5,7 +5,7 @@ Aquí solo pondre aclaraciones o notas importantes de las que vaya diciendo fern
 ### explode(): 
  lanzará ahora una ValueError cuando el parámetro separator es una string vacía (""). Anteriormente, explode() retornaba false, ya NO.
 
-### EJERCICIOS PARA CASA 
+### EJERCICIOS PARA CASA 📖
 ---
 Tenemos que terminar el busca minas con los metodos de servidor
 De objetos, tenemos que 

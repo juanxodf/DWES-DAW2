@@ -1,101 +1,122 @@
-creamos un index.php y una clase que será "nave.php"
+# 📝 Chuletario POO en PHP (con ejemplos de Naves 🚀)
 
-en nave pondremos:
-``
-<?php
-    class Nave{
-        private $nombre;
-        private $tipoCarga;
-        private $combustible;
-        
-        public function __construct($nom, $tc, $co){
-            $this->nombre = $nom;
-            $this->tipoCarga = $tc;
-            $this->combustible = $co;
-        }
+## 🔹 Incluir archivos
 
-        
-        public function __toString(){
-            return 'Nave (Nombre: '.$this->nombre.' - Tipo de carga: '.$this->tipoCarga.' - Combustible: '.$this->combustible.')';
-        }
+* `require 'archivo.php';` → incluye el archivo, si no existe → error fatal.
+* `require_once 'archivo.php';` → lo mismo, pero evita incluirlo más de una vez.
+* Se usa para **importar clases** que vas a necesitar.
 
-        /**
-         * Get the value of nombre
-         */ 
-        public function getNombre()
-        {
-                return $this->nombre;
-        }
+Ejemplo:
 
-        /**
-         * Set the value of nombre
-         *
-         * @return  self
-         */ 
-        public function setNombre($nombre)
-        {
-                $this->nombre = $nombre;
+```php
+require_once 'nave.php';
+require 'factorias.php';
+```
 
-                return $this;
-        }
 
-        /**
-         * Get the value of tipoCarga
-         */ 
-        public function getTipoCarga()
-        {
-                return $this->tipoCarga;
-        }
+## 🔹 Crear objetos
 
-        /**
-         * Set the value of tipoCarga
-         *
-         * @return  self
-         */ 
-        public function setTipoCarga($tipoCarga)
-        {
-                $this->tipoCarga = $tipoCarga;
-
-                return $this;
-        }
-
-        /**
-         * Get the value of combustible
-         */ 
-        public function getCombustible()
-        {
-                return $this->combustible;
-        }
-
-        /**
-         * Set the value of combustible
-         *
-         * @return  self
-         */ 
-        public function setCombustible($combustible)
-        {
-                $this->combustible = $combustible;
-
-                return $this;
-        }
-
-        public function despegar($vel){
-            echo 'La nave '.$this->nombre.' ha despegado a '.$vel.' km/h <br>';
-        }
-        public function __Call($nombre, $args){
-            echo 'Se llama '.$nombre.' <br>';
-            print_r($args);
-        }
-    }
-
-    en el index hemos puesto 
-    <?php
-
-require 'nave.php';
-
+```php
 $n = new Nave('Enterprise', 'Mercancias', 'Antimateria');
+```
 
+✔️ Crea una instancia de la clase `Nave`.
+✔️ Se ejecuta el `__construct()` que recibe parámetros.
+---
+
+## 🔹 Métodos mágicos
+
+* `__construct()` → inicializa el objeto al crearlo.
+* `__toString()` → define cómo se imprime el objeto.
+
+  ```php
+  echo $n; // llama a __toString()
+  ```
+* `__call($nombre, $args)` → se ejecuta si intentas llamar a un método que **no existe**.
+* `__callStatic()` → igual, pero para métodos estáticos.
+
+
+## 🔹 Getters y Setters
+
+Sirven para acceder y modificar atributos privados:
+
+```php
+$n->setNombre('Defiant');
+echo $n->getNombre();
+```
+
+✔️ Protege el acceso directo a las propiedades.
+
+
+## 🔹 Métodos estáticos
+
+* Se llaman sin crear un objeto.
+* Se usan cuando no necesitas una instancia, solo lógica.
+
+```php
+Factoria::generaAlumno();   // devuelve una Nave aleatoria
+Nave::metodoEstatico();     // imprime "Metodo estatico"
+```
+
+## 🔹 Builder (Patrón de diseño)
+
+Es una forma de **construir objetos paso a paso**.
+En lugar de pasar todos los parámetros en el constructor, se van “seteando” y al final se llama a `build()`.
+
+Ejemplo:
+
+```php
+$nav2 = Nave::Builder()
+            ->setCombustible('Ionico')
+            ->setNombre('Voyager')
+            ->build();
+
+$nav3 = Nave::Builder()
+            ->setNombre('Journey')
+            ->build();
+```
+
+✔️ `$nav2` y `$nav3` son **objetos `Nave`**, construidos desde un objeto auxiliar (`BuilderNave`).
+✔️ Puedes usar valores por defecto si no defines todo.
+
+
+## 🔹 Ejemplo completo (tu main.php)
+
+```php
+require_once 'nave.php';
+require 'factorias.php';
+
+// Crear nave normal con constructor
+$n = new Nave('Enterprise', 'Mercancias', 'Antimateria');
 echo $n.'<br>';
 
-$n -> setNombre('Defiant');
+$n->setNombre('Defiant');
 echo $n.'<br>';
+
+// Crear nave aleatoria con la factoría
+Factoria::generaAlumno();
+
+// Crear nave con Builder
+$nav2 = Nave::Builder()->setCombustible('Ionico')->setNombre('Voyager')->build();
+$nav3 = Nave::Builder()->setNombre('Journey')->build();
+echo $nav2.'<br>'.$nav3.'<br>';
+
+// Usar Builder paso a paso
+$navJuan = Nave::Builder();
+$navJuan->setNombre('Juanito');
+$navJuan->setCombustible('Nuclear');
+$navJuan = $navJuan->build();
+echo $navJuan;
+```
+
+---
+
+## 📌 Ideas clave que debes recordar
+
+1. **Clases** → definen atributos (propiedades) y comportamientos (métodos).
+2. **Objetos** → son instancias de clases.
+3. **Encapsulación** → se usan `private` + getters/setters para proteger datos.
+4. **Métodos mágicos** → añaden “atajos” o comportamientos especiales (`__toString`, `__call`, etc.).
+5. **Métodos estáticos** → se llaman con `Clase::metodo()`, sin necesidad de crear objetos.
+6. **Builder** → facilita construir objetos complejos paso a paso.
+7. **Factoría** → crea objetos de forma automatizada (ejemplo: naves aleatorias).
