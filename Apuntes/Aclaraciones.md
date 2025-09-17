@@ -7,7 +7,8 @@ Aquí solo pondre aclaraciones o notas importantes de las que vaya diciendo fern
 
 ### EJERCICIOS PARA CASA 
 ---
-Tenemos que arreglar el juego de la mosca y hacer el del buscaminas con los REQUEST_URI y REQUEST_METHOD
+Tenemos que terminar el busca minas con los metodos de servidor
+De objetos, tenemos que 
 
  
 
