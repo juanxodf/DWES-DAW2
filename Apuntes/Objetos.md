@@ -1,5 +1,6 @@
 # 📝 Chuletario POO en PHP (con ejemplos de Naves 🚀)
 
+
 ## 🔹 Incluir archivos
 
 * `require 'archivo.php';` → incluye el archivo, si no existe → error fatal.
@@ -120,3 +121,175 @@ echo $navJuan;
 5. **Métodos estáticos** → se llaman con `Clase::metodo()`, sin necesidad de crear objetos.
 6. **Builder** → facilita construir objetos complejos paso a paso.
 7. **Factoría** → crea objetos de forma automatizada (ejemplo: naves aleatorias).
+
+<br>
+<br>
+<br>
+
+# 🔑 Modificadores en PHP OOP
+
+## 1. **public**
+
+* Accesible **desde cualquier parte**: dentro de la clase, desde fuera, desde clases hijas.
+* Es el modificador más abierto.
+
+```php
+class Nave {
+    public $nombre = "Enterprise";
+}
+
+$n = new Nave();
+echo $n->nombre; // ✅ funciona
+```
+
+## 2. **private**
+
+* Accesible **solo dentro de la clase donde está declarado**.
+* Ni siquiera las clases hijas pueden acceder.
+
+```php
+class Nave {
+    private $combustible = "Antimateria";
+}
+
+$n = new Nave();
+echo $n->combustible; // ❌ ERROR (no se puede acceder desde fuera)
+```
+
+## 3. **protected**
+
+* Accesible **dentro de la clase y sus hijas (herencia)**.
+* No se puede acceder directamente desde fuera.
+
+```php
+class Nave {
+    protected $tipo = "Exploración";
+}
+
+class SubNave extends Nave {
+    public function mostrarTipo() {
+        return $this->tipo; // ✅ accesible desde clase hija
+    }
+}
+
+$s = new SubNave();
+echo $s->mostrarTipo(); // "Exploración"
+```
+
+## 4. **static**
+
+* La propiedad o método pertenece a la **clase**, no a la instancia.
+* No necesitas crear un objeto para usarlo.
+
+```php
+class Nave {
+    public static $contador = 0;
+
+    public static function aumentar() {
+        self::$contador++;
+    }
+}
+
+Nave::aumentar();
+echo Nave::$contador; // 1
+```
+
+✔️ Se accede con `Clase::propiedad` o `Clase::metodo()`.
+✔️ Dentro de la clase, se usa `self::`.
+
+---
+
+## 5. **final** (extra importante)
+
+* Si lo pones en una **clase**, **no puede heredarse**.
+* Si lo pones en un **método**, ese método no puede ser sobreescrito en clases hijas.
+
+```php
+final class Nave { } // No se puede extender
+
+class Base {
+    final public function despegar() { }
+}
+
+class Sub extends Base {
+    public function despegar() { } // ❌ ERROR
+}
+```
+
+## 6. **abstract**
+
+* Se usa en clases y métodos.
+* Una **clase abstracta** no se puede instanciar, solo heredar.
+* Un **método abstracto** obliga a las clases hijas a implementarlo.
+
+```php
+abstract class Nave {
+    abstract public function despegar();
+}
+
+class NaveEspacial extends Nave {
+    public function despegar() {
+        echo "Despegando 🚀";
+    }
+}
+```
+
+# 📝 Resumen rápido (modo chuleta)
+
+| Modificador   | Acceso / Uso                                  |
+| ------------- | --------------------------------------------- |
+| **public**    | Desde cualquier parte                         |
+| **private**   | Solo dentro de la clase                       |
+| **protected** | Clase + hijas                                 |
+| **static**    | Pertenece a la clase, no al objeto            |
+| **final**     | Clase no heredable / método no sobrescribible |
+| **abstract**  | Clases incompletas, deben heredarse           |
+
+## 🔹 `is` y `as` (C#) vs PHP
+
+En PHP no existen directamente `is` y `as` como en C#, pero hay equivalentes.
+
+### En **C#**
+
+```csharp
+if (obj is Nave) {
+    Nave nave = obj as Nave;
+}
+```
+
+* `is` → comprueba si un objeto es de cierto tipo.
+* `as` → intenta convertir el objeto (si no puede, devuelve `null`).
+
+### En **PHP**
+
+#### 1. Equivalente a `is` → `instanceof`
+
+```php
+if ($obj instanceof Nave) {
+    echo "Es una Nave 🚀";
+}
+```
+
+#### 2. Equivalente a `as` → *casting* y *type hinting*
+
+```php
+// Casting de tipos escalares
+$numero = "123";
+$numero = (int) $numero; // ahora es 123 como int
+
+// Type hinting en funciones
+function despegar(Nave $n) {
+    echo "La nave {$n->getNombre()} despega!";
+}
+```
+
+✔️ Si le pasas algo que no sea una `Nave`, PHP lanza error.
+
+
+## 📌 Resumen `is` vs `as`
+
+| Lenguaje | `is`                            | `as`                                                          |
+| -------- | ------------------------------- | ------------------------------------------------------------- |
+| **C#**   | Comprueba tipo (`obj is Clase`) | Convierte/castea (`obj as Clase`)                             |
+| **PHP**  | `instanceof`                    | No existe `as`. Se usan **casts** `(tipo)` o **type hinting** |
+

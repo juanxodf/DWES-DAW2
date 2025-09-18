@@ -3,6 +3,7 @@
 require_once 'nave.php';
 require 'factorias.php';
 
+
 $n = new Nave('Enterprise', 'Mercancias', 'Antimateria');
 
 echo $n.'<br>';
@@ -29,3 +30,14 @@ $navJuan->setCombustible('Nuclear');
 
 // y luego la construimos
 $navJuan = $navJuan->build();
+
+
+//print_r($flota)
+
+$flota [] = new Carga('Carguero1', 'Ionico', 'Minerales');
+$flota [] = new Hospital('Hospitalaria1', 'Ionico', 200);
+
+$flota= [];
+    foreach($variable as $key => $value){
+        echo $value->__loquesea().'<br>';
+    }

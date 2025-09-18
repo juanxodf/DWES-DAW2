@@ -1,18 +1,18 @@
 <?php
     class Nave{
         private $nombre;
-        private $tipoCarga;
         private $combustible;
+        static $tablon;
         
         public function __construct($nom, $tc, $co){
             $this->nombre = $nom;
-            $this->tipoCarga = $tc;
+            
             $this->combustible = $co;
         }
 
         
         public function __toString(){
-            return 'Nave (Nombre: '.$this->nombre.' - Tipo de carga: '.$this->tipoCarga.' - Combustible: '.$this->combustible.')';
+            return 'Nave (Nombre: '.$this->nombre.' - Combustible: '.$this->combustible.')';
         }
 
         /**
@@ -25,7 +25,7 @@
 
         /**
          * Set the value of nombre
-         *
+         *<
          * @return  self
          */ 
         public function setNombre($nombre)
@@ -38,22 +38,7 @@
         /**
          * Get the value of tipoCarga
          */ 
-        public function getTipoCarga()
-        {
-                return $this->tipoCarga;
-        }
-
-        /**
-         * Set the value of tipoCarga
-         *
-         * @return  self
-         */ 
-        public function setTipoCarga($tipoCarga)
-        {
-                $this->tipoCarga = $tipoCarga;
-
-                return $this;
-        }
+        
 
         /**
          * Get the value of combustible
@@ -161,7 +146,9 @@
         // Método que crea la nave con los datos que se han ido seteando
         public function build(){
             return new Nave($this->nombre, $this->tipoCarga, $this->combustible);
+        }   
+        public function __loquesea(){
+            return 'ea';
         }
-
-
     }
+    
