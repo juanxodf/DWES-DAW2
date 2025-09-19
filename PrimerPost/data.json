@@ -1,0 +1,8 @@
+
+{
+    "nombre":"Alguien",
+    "edad":12 ,
+    "objeto":[
+        {"dni":"1A"},{"dni":"2B"}
+    ]
+}
