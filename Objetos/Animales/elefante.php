@@ -1,9 +1,6 @@
 <?php
 require_once('animal.php');
 class Elefante extends Animal{
-    public function __construct(){
-
-    }
     public function dormir(){
         return "El elefante está durmiendo";
     }

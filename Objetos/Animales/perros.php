@@ -18,5 +18,9 @@
                 return "El perro no hace caso"; 
             }
         }
+
+        private function sacarPaseo(){
+            return "El perro ha salido a pasear";
+        }
         
     }

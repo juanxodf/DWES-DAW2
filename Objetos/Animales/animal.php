@@ -1,5 +1,11 @@
 <?php
     abstract class Animal{
+        public function __construct(){
+            $this->nombre;
+            $this->raza;
+            $this->peso;
+            $this->color;
+        }
         private $nombre;
         private $raza;
         private $peso;
