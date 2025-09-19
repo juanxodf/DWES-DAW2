@@ -1,6 +1,12 @@
 <?php
     require_once('animal.php');
     class Perros extends Animal{
+        public function comer(){
+            return "El perro está comiendo";
+        }
+        public function dormir(){
+            return "El perro está durmiendo";
+        }
         public function hacerRuido(){
             return "Guau Guau";
         }

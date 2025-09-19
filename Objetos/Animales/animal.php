@@ -8,12 +8,7 @@
         public function Vacunar(){
 
         }
-        public function comer(){
-
-        }
-        public function dormir(){
-
-        }
+        abstract function comer();
+        abstract function dormir();
         abstract function hacerRuido();
-        abstract function hacerCaso();
     }
