@@ -20,8 +20,9 @@ lo que hará será "dormir" el programa el tiempo que le pongamos (la variable).
 
 ### EJERCICIOS PARA CASA 📖
 ---
-Tenemos que terminar el busca minas con los metodos de servidor
-De objetos, tenemos que 
+
+- Buscar videos sobre como hacer programas con postman (metodos servidor)
+> ***Nota*** : Estoy perdidisimo, buscar tutoriales desde 0
 
  
 

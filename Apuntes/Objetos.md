@@ -1,6 +1,5 @@
 # 📝 Chuletario POO en PHP (con ejemplos de Naves 🚀)
 
-
 ## 🔹 Incluir archivos
 
 * `require 'archivo.php';` → incluye el archivo, si no existe → error fatal.
