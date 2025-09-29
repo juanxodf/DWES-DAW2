@@ -1,0 +1,57 @@
+### LOGIN (obtener acceso con usuario)
+POST http://localhost/tu-proyecto/login
+Content-Type: application/json
+
+{
+  "nombre": "juan",
+  "pass": "hash1"
+}
+
+### CREAR UN USUARIO (cualquiera puede hacerlo, por defecto será jugador)
+POST http://localhost/tu-proyecto/users
+Content-Type: application/json
+
+{
+  "nombre": "mario",
+  "pass": "hash123",
+  "mail": "mario@mail.com"
+}
+
+### LISTAR TODOS LOS USUARIOS (solo admins, se pasa el id_admin por query string)
+GET http://localhost/tu-proyecto/users?id_admin=1
+
+### ACTUALIZAR UN USUARIO (solo admins)
+PUT http://localhost/tu-proyecto/users/3?id_admin=1
+Content-Type: application/json
+
+{
+  "nombre": "maria_actualizada",
+  "mail": "maria@update.com"
+}
+
+### ELIMINAR UN USUARIO (solo admins)
+DELETE http://localhost/tu-proyecto/users/3?id_admin=1
+
+---
+
+### CREAR UNA PARTIDA (jugador o admin)
+POST http://localhost/tu-proyecto/partida
+Content-Type: application/json
+
+{
+  "id_usuario": 2
+}
+
+### VER EL ESTADO DE UNA PARTIDA
+GET http://localhost/tu-proyecto/partida/1
+
+### GOLPEAR UNA CASILLA DEL TABLERO
+PUT http://localhost/tu-proyecto/partida/1/golpear
+Content-Type: application/json
+
+{
+  "casilla": 5
+}
+
+### RENDIRSE EN UNA PARTIDA
+PUT http://localhost/tu-proyecto/partida/1/rendirse
